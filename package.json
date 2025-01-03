@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "serve": "http-server . --cors"
+  },
+  "devDependencies": {
+    "typescript": "^4.x.x",
+    "http-server": "^14.1.1"
+  }
+} 
