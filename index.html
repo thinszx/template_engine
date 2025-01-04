@@ -47,10 +47,6 @@
             margin: 10px;
         }
     </style>
-    <script type="module">
-        import { TemplateParser } from './dist/parser.js';
-        import './dist/main.js';
-    </script>
 </head>
 <body>
 
@@ -60,7 +56,6 @@
 
 <main>
     <h2>这是一个简单的模板</h2>
-    添加一个下拉框
     <label for="dropdown">选择选项：</label>
     <select id="dropdown" aria-label="选择选项">
         <option value="option1">选项1</option>
@@ -79,6 +74,8 @@
 <footer>
     <p>© 2025 我的公司</p>
 </footer>
+
+<script type="module" src="/src/main.ts"></script>
 
 </body>
 </html>
