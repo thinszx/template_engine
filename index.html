@@ -1,81 +1,85 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简易模板页面</title>
+    <title>JSX Test</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-        main {
             padding: 20px;
-            background-color: white;
-            margin: 15px;
-            border-radius: 8px;
+            font-family: Arial, sans-serif;
         }
-        footer {
-            text-align: center;
+        #test-area > * {
+            margin-bottom: 20px;
             padding: 10px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            border: 1px solid #ccc;
         }
-        .content {
-            font-size: 16px;
-            line-height: 1.6;
+        .test {
+            color: blue;
         }
-        .highlight {
-            color: #ff6347;
-            font-weight: bold;
-        }
-        .square {
-            width: 100px;
-            height: 100px;
-            background-color: #4CAF50;
-            margin: 10px;
+        .container {
+            background-color: #f5f5f5;
         }
     </style>
 </head>
 <body>
+    <div id="app"></div>
+    <div id="test-area"></div>
+    <script type="module">
+        import { createElement, Fragment } from './src/createElement';
+        import { renderTemplate } from './src/templateEngine';
 
-<header>
-    <h1>欢迎来到我的页面</h1>
-</header>
+        // Test createElement
+        const testArea = document.getElementById('test-area');
 
-<main>
-    <h2>这是一个简单的模板</h2>
-    <label for="dropdown">选择选项：</label>
-    <select id="dropdown" aria-label="选择选项">
-        <option value="option1">选项1</option>
-        <option value="option2">选项2</option>
-        <option value="option3">选项3</option>
-    </select>
-    
-    <div class="content">
-        <p>当前选择的选项是：<span class="highlight">{{ dropdown }}</span></p>
-        <div class="square">
-            <span class="highlight">{{ dropdown }}</span>
-        </div>
-    </div>
-</main>
+        // Test 1: Simple element
+        const simpleDiv = createElement('div', { className: 'test' }, 'Hello World');
+        testArea.appendChild(simpleDiv);
 
-<footer>
-    <p>© 2025 我的公司</p>
-</footer>
+        // Test 2: Nested elements
+        const nestedElement = createElement('div', { className: 'container' },
+            createElement('h1', null, 'Title'),
+            createElement('p', null, 'Paragraph'),
+            createElement('div', { className: 'nested' }, 'Nested Div')
+        );
+        testArea.appendChild(nestedElement);
 
-<script type="module" src="/src/main.ts"></script>
+        // Test 3: Event handling
+        const button = createElement('button', {
+            onClick: () => alert('Button clicked!')
+        }, 'Click me');
+        testArea.appendChild(button);
 
+        // Test 4: Function component
+        const TestComponent = (props) => {
+            return createElement('div', null,
+                createElement('h2', null, props.title),
+                props.children
+            );
+        };
+
+        const componentTest = createElement(TestComponent, 
+            { title: 'Component Test' },
+            createElement('p', null, 'This is a child element')
+        );
+        testArea.appendChild(componentTest);
+
+        // Test 5: Fragment
+        const fragmentTest = Fragment({
+            children: [
+                createElement('div', null, 'Fragment Item 1'),
+                createElement('div', null, 'Fragment Item 2')
+            ]
+        });
+        testArea.appendChild(fragmentTest);
+
+        // Test 6: Template Engine
+        const templateTest = document.createElement('div');
+        templateTest.innerHTML = renderTemplate(
+            'Hello, {{ name }}! Your age is {{ age }}',
+            { name: 'John', age: 25 }
+        );
+        testArea.appendChild(templateTest);
+    </script>
 </body>
 </html>

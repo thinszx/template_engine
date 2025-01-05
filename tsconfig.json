@@ -1,15 +1,26 @@
 {
     "compilerOptions": {
-      "target": "ES2017",
-      "module": "ES2015",
-      "outDir": "./dist",
+      "target": "ESNext",
+      "useDefineForClassFields": true,
+      "lib": ["DOM", "DOM.Iterable", "ESNext"],
+      "allowJs": false,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
       "strict": true,
       "forceConsistentCasingInFileNames": true,
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "sourceMap": true,
-      "rootDir": "./src",
-      "lib": ["ES2017", "DOM"]
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react",
+      "jsxFactory": "createElement",
+      "jsxFragmentFactory": "Fragment",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"]
+      }
     },
-    "include": ["src/**/*"]
-  }
+    "include": ["src"]
+}
